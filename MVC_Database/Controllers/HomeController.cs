@@ -6,11 +6,12 @@ namespace MVC_Database.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public AuthContext _context;
+
+        public HomeController(AuthContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
