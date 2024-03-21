@@ -1,11 +1,19 @@
 using MVC_Database;
+using MVC_Database.ActionFilter;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(option =>
+{
 
 
+    option.Filters.Add(new AutorizeActionFilter());
+
+
+});
+
+builder.Services.AddSession();
 
 builder.Services.AddScoped(typeof(AuthContext));
 var app = builder.Build();
@@ -22,6 +30,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 
