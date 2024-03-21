@@ -18,6 +18,15 @@ namespace MVC_Database.Controllers
         {
             return View();
         }
+        public IActionResult Login(UserAuthModel model)
+        {
+            // ekrandan gelen veriler ile databasedeki verilere göre kullanýcý giriþ mekanizmasý yapalým
+
+
+            var userIsLogin = _context.Authentications.Any(s => s.Username == model.Username && s.Password == model.Password);
+
+            return View("Login");
+        }
 
         public IActionResult Privacy()
         {
