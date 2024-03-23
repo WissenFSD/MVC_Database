@@ -23,20 +23,27 @@ namespace MVC_Database.ActionFilter
 
                 if (sessionAction != action || sessionController != controller)
                 {
-                    // hakkı olan yer ile girmek istediği yer aynı
 
-                    // bu noktada, kullanın gitmek istediği yere yönlendirelim 
+                    if (controller != "Home" && action != "Hata")
+                    {
+                        // hata sayfasına yönlendirdikten sonra, hata sayfasıda açılırken actionfilter kullanıldığı için,
+                        // tekrar tekrar hata sayfasına yönlendirme işlemini çömzmek için if koydukl
 
-                    var controllerbase = (HomeController)context.Controller;
-                    context.Result = controllerbase.RedirectToAction("Hata", "Home");
+                        // hakkı olan yer ile girmek istediği yer aynı
+
+                        // bu noktada, kullanın gitmek istediği yere yönlendirelim 
+
+                        var controllerbase = (HomeController)context.Controller;
+                        context.Result = controllerbase.RedirectToAction("Hata", "Home");
+                    }
+
+
+
                 }
-              
+
+
+
 
             }
-
-        
-
-
         }
     }
-}
